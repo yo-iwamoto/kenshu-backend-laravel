@@ -6,6 +6,6 @@ COPY . .
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN apt-get update && apt-get install -y git libzip-dev
+RUN apt-get update && apt-get install -y git libzip-dev zip
 
 RUN docker-php-ext-install pdo_mysql
