@@ -1,0 +1,6 @@
+.gitignore
+.dockerignore
+.env.example
+README.md
+vendor
+.editorconfig
