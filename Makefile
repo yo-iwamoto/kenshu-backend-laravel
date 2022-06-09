@@ -1,6 +1,9 @@
 .PHONY: init
 init:
-	docker-compose exec app bash -c \
+    cp .env.example .env \
+    && docker-compose build \
+    && docker-compose up -d \
+	&& docker-compose exec app bash -c \
 		" \
 			chown www-data storage/ -R \
 			&& composer install \
