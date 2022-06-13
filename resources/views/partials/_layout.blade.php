@@ -6,7 +6,7 @@
 
     <title>KENSHU TIMES</title>
 
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="/css/app.css">
     <style>
         body {
             font-family: 'Nunito', sans-serif;
