@@ -5,9 +5,46 @@
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+__webpack_require__(/*! ./preview-images */ "./resources/js/preview-images.js");
+
+/***/ }),
+
+/***/ "./resources/js/preview-images.js":
+/*!****************************************!*\
+  !*** ./resources/js/preview-images.js ***!
+  \****************************************/
 /***/ (() => {
 
+/**
+ * @description preview chosen image
+ * @requires input#image, div#js-preview-container
+ * TODO: 一度プレビューを表示した後画像を変更すると壊れる
+ */
+var previewImageWhenImageChosen = function previewImageWhenImageChosen() {
+  var $imageInput = document.getElementById('image');
+  var $previewContainer = document.getElementById('js-preview-container');
+  var $preview = document.getElementById('js-preview');
 
+  if ($imageInput === null || $previewContainer === null) {
+    throw new Error();
+  }
+
+  $imageInput.addEventListener('change', function (e) {
+    if (e.target instanceof HTMLInputElement) {
+      var url = window.URL.createObjectURL(e.target.files[0]);
+      var $image = document.createElement('img');
+      $image.setAttribute('src', url);
+      $image.setAttribute('id', 'js-preview');
+      $image.setAttribute('alt', 'プロフィール画像のプレビュー');
+      $image.setAttribute('width', 200);
+      $previewContainer.appendChild($image);
+    }
+  });
+};
+
+previewImageWhenImageChosen();
 
 /***/ }),
 
