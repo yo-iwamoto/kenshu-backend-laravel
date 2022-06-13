@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSessionRequest;
-use App\Services\StoreSessionServicInterface;
+use App\Services\StoreSessionServiceInterface;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class SessionController extends Controller
 {
     public function __construct(
-        private StoreSessionServicInterface $store_session_service,
+        private StoreSessionServiceInterface $store_session_service,
     ) {
     }
 

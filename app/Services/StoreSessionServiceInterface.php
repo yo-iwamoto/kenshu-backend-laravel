@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Illuminate\Validation\ValidationException;
 
-interface StoreSessionServicInterface
+interface StoreSessionServiceInterface
 {
     /**
      * @param string $email
