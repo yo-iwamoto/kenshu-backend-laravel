@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\StorePostService;
+use App\Services\StorePostServiceInterface;
 use App\Services\StoreSessionService;
 use App\Services\StoreSessionServicInterface;
 use App\Services\StoreUserService;
@@ -17,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(StorePostServiceInterface::class, StorePostService::class);
         $this->app->bind(StoreUserServiceInterface::class, StoreUserService::class);
         $this->app->bind(StoreSessionServicInterface::class, StoreSessionService::class);
     }

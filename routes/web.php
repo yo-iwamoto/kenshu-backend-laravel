@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -26,4 +27,8 @@ Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::resource('/session', SessionController::class)->only([
     'store',
     'destroy',
+]);
+
+Route::resource('/post', PostController::class)->only([
+    'store',
 ]);
