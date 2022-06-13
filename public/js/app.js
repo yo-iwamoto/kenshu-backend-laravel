@@ -9,6 +9,8 @@
 
 __webpack_require__(/*! ./preview-images */ "./resources/js/preview-images.js");
 
+__webpack_require__(/*! ./toggle */ "./resources/js/toggle.js");
+
 /***/ }),
 
 /***/ "./resources/js/preview-images.js":
@@ -44,7 +46,43 @@ var previewImageWhenImageChosen = function previewImageWhenImageChosen() {
   });
 };
 
-previewImageWhenImageChosen();
+if (new URL(document.URL).pathname === '/signup') {
+  previewImageWhenImageChosen();
+}
+
+/***/ }),
+
+/***/ "./resources/js/toggle.js":
+/*!********************************!*\
+  !*** ./resources/js/toggle.js ***!
+  \********************************/
+/***/ (() => {
+
+var toggle = function toggle() {
+  var $toggleButton = document.getElementById('js-toggle-button');
+  var $toggleBody = document.getElementById('js-toggle-body');
+
+  if ($toggleButton === null || $toggleBody === null) {
+    return;
+  }
+
+  var isOpen = true;
+  $toggleButton.addEventListener('click', function () {
+    if (isOpen) {
+      $toggleBody.classList.add('h-0');
+      $toggleButton.classList.add('rotate-180');
+      isOpen = false;
+    } else {
+      $toggleBody.classList.remove('h-0');
+      $toggleButton.classList.remove('rotate-180');
+      isOpen = true;
+    }
+  });
+};
+
+if (new URL(document.URL).pathname === '/') {
+  toggle();
+}
 
 /***/ }),
 
