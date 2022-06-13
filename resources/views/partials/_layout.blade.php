@@ -6,8 +6,7 @@
 
     <title>KENSHU TIMES</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/app.css">
     <style>
         body {
             font-family: 'Nunito', sans-serif;
@@ -16,9 +15,12 @@
 </head>
 
 <body>
+    @include('partials._header')
+
     <main>
         @yield('content')
     </main>
+    <script src="/js/app.js"></script>
 </body>
 
 </html>
