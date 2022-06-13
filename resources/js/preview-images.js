@@ -27,4 +27,6 @@ const previewImageWhenImageChosen = () => {
     });
 };
 
-previewImageWhenImageChosen();
+if (new URL(document.URL).pathname === '/signup') {
+    previewImageWhenImageChosen();
+}
