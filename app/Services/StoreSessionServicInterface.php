@@ -2,15 +2,15 @@
 
 namespace App\Services;
 
-use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 interface StoreSessionServicInterface
 {
     /**
-     * @param Request $request
+     * @param string $email
+     * @param string $password
      * @return bool Auth::attempt の返り値
      * @throws ValidationException
      */
-    public function execute(Request $request);
+    public function execute($email, $password);
 }

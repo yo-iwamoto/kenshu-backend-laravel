@@ -7,13 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 class StoreSessionService implements StoreSessionServicInterface
 {
-    public function execute($request)
+    public function execute($email, $password)
     {
-        $data = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+        return Auth::attempt([
+            'email' => $email,
+            'password' => $password,
         ]);
-
-        return Auth::attempt($data);
     }
 }

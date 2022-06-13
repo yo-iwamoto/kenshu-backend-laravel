@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSessionRequest;
 use App\Services\StoreSessionServicInterface;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,9 +19,14 @@ class SessionController extends Controller
         return view('sessions.login');
     }
 
-    public function store(Request $request)
+    public function store(StoreSessionRequest $request)
     {
-        $succeeded = $this->store_session_service->execute($request);
+        $form_data = $request->validated();
+
+        $succeeded = $this->store_session_service->execute(
+            email: $form_data['email'],
+            password: $form_data['password'],
+        );
 
         if ($succeeded) {
             $request->session()->regenerate();
