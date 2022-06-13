@@ -17,12 +17,4 @@ class Post extends Model
         'title',
         'content',
     ];
-
-    /**
-     * 投稿者の User を取得
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }
