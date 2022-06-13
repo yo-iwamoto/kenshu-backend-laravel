@@ -35,7 +35,10 @@ return new class extends Migration {
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('name')->change();
+            $table->string('email')->change();
+            $table->dropColumn('profile_image_url');
         });
     }
 };
