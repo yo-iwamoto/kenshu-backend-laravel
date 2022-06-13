@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Services\StoreUserServiceInterface;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class UserController extends Controller
@@ -18,9 +18,16 @@ class UserController extends Controller
         return view('users.signup');
     }
 
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $this->store_user_service->execute($request);
+        $form_data = $request->validated();
+
+        $this->store_user_service->execute(
+            name: $form_data['name'],
+            email: $form_data['email'],
+            password: $form_data['password'],
+            file: $request->file('profile_image'),
+        );
 
         return redirect('/')->with('message', "Woohoo🎉 You're now logged in!");
     }

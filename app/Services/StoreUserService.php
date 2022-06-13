@@ -5,23 +5,16 @@ namespace App\Services;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
 use App\Services\StoreUserServiceInterface;
+use Illuminate\Http\UploadedFile;
 
 class StoreUserService implements StoreUserServiceInterface
 {
-    public function execute($request)
+    public function execute($name, $email, $password, $file)
     {
-        $formFields = $request->validate([
-            'name' => ['required', 'min:1', 'max:50'],
-            'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => ['required', 'min:6', 'max:72'],
-            'profile_image' => ['file', 'max:1024'], // ファイルサイズを 1MB までに制限
-        ]);
-
-        if ($request->file('profile_image') !== null) {
+        if ($file instanceof UploadedFile) {
             // ファイルをストア
-            $storage_path = Storage::putFile('public/img/users', $request->file('profile_image'));
+            $storage_path = Storage::putFile('public/img/users', $file);
             if (!$storage_path) {
                 throw new Exception('failed to upload file');
             }
@@ -33,11 +26,11 @@ class StoreUserService implements StoreUserServiceInterface
         $profile_image_url ??= '/img/default-icon.png';
 
         // パスワードのハッシュ化
-        $password_hash = bcrypt($formFields['password']);
+        $password_hash = bcrypt($password);
 
         $user = User::create([
-            'name' => $formFields['name'],
-            'email' => $formFields['email'],
+            'name' => $name,
+            'email' => $email,
             'password' => $password_hash,
             'profile_image_url' => $profile_image_url,
         ]);
