@@ -1,1 +1,1 @@
-import './bootstrap';
+require('./preview-images');

@@ -1,4 +1,10 @@
 {
     "editor.defaultFormatter": "junstyle.php-cs-fixer",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
