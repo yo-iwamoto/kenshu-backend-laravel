@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', fn () => view('root'));
+
+Route::get('/signup', [UserController::class, 'create']);
+Route::resource('/user', UserController::class)->only([
+    'store'
+]);
+
+Route::get('/login', [SessionController::class, 'create'])->name('login');
+Route::resource('/session', SessionController::class)->only([
+    'store',
+    'destroy',
+]);
