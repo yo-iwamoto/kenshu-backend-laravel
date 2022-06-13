@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Services\StoreSessionService;
+use App\Services\StoreSessionServicInterface;
+use App\Services\StoreUserService;
+use App\Services\StoreUserServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +17,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(StoreUserServiceInterface::class, StoreUserService::class);
+        $this->app->bind(StoreSessionServicInterface::class, StoreSessionService::class);
     }
 
     /**

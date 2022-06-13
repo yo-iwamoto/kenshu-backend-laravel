@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\StoreSessionServicInterface;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class SessionController extends Controller
 {
+    public function __construct(
+        private StoreSessionServicInterface $store_session_service,
+    ) {
+    }
+
     public function create()
     {
         return view('sessions.login');
@@ -15,12 +21,9 @@ class SessionController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        $succeeded = $this->store_session_service->execute($request);
 
-        if (Auth::attempt($data)) {
+        if ($succeeded) {
             $request->session()->regenerate();
 
             return redirect('/');
@@ -31,7 +34,7 @@ class SessionController extends Controller
         ])->onlyInput('email');
     }
 
-    public function destroy(Request $request)
+    public function destroy()
     {
         Auth::logout();
 
