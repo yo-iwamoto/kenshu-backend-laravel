@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\DestroyPostService;
+use App\Services\DestroyPostServiceInterface;
 use App\Services\IndexPostService;
 use App\Services\IndexPostServiceInterface;
 use App\Services\ShowPostService;
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(DestroyPostServiceInterface::class, DestroyPostService::class);
         $this->app->bind(IndexPostServiceInterface::class, IndexPostService::class);
         $this->app->bind(ShowPostServiceInterface::class, ShowPostService::class);
         $this->app->bind(StorePostServiceInterface::class, StorePostService::class);
