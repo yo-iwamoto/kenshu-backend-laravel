@@ -11,8 +11,7 @@
                     </button>
                 </div>
                 <div id="js-toggle-body" class="overflow-hidden origin-top">
-                    <form id="post" class="flex flex-col h-auto gap-8" action={{ route('post.store') }} method="POST"
-                        enctype="multipart/form-data">
+                    <form id="post" class="flex flex-col h-auto gap-8" action={{ route('post.store') }} method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div>
@@ -22,6 +21,9 @@
                             <input id="title" aria-labelledby="post title" type="text" name="title" placeholder=""
                                 class="border-gray-400 w-full shadow-lg border rounded-lg bg-light-800 p-2" required
                                 aria-required="true">
+                            @error('title')
+                                <p class="text-red-500">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div>
@@ -30,7 +32,36 @@
                             <textarea id="content" aria-labelledby="post content" name="content" placeholder="" rows="6"
                                 class="border-gray-400 w-full shadow-lg border rounded-lg bg-light-800 p-2" required
                                 aria-required="true"></textarea>
+                            @error('content')
+                                <p class="text-red-500">{{ $message }}</p>
+                            @enderror
                         </div>
+
+                        {{-- 画像フォーム ~~ --}}
+
+                        <div class="flex flex-col">
+                            <label class="font-bold" for="images" class="block">
+                                <span>添付画像</span>
+                                <small class="pl-2">(複数選択可・png, jpg, gif 形式のファイルを指定してください)</small>
+                            </label>
+                            <input
+                                id="images"
+                                aria-describedby="post images"
+                                type="file"
+                                accept="image/*"
+                                name="images[]"
+                                multiple
+                            >
+                            @error('images[]')
+                                <p class="text-red-500">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <input id="thumbnail_image_index" type="hidden" class="-mb-8" name="thumbnail_image_index">
+
+                        <div id="js-preview-container" class="-mb-4 flex gap-2"></div>
+
+                        {{-- ~~ 画像フォーム --}}
 
                         <div class="flex justify-end">
                             <button type="submit"
