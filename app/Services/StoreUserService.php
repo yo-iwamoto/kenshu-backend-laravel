@@ -18,7 +18,7 @@ class StoreUserService implements StoreUserServiceInterface
             if (!$storage_path) {
                 throw new Exception('failed to upload file');
             }
-            $full_path = "/storage/$storage_path";
+            $full_path = "/storage$storage_path";
 
             // ファイルパスから public を除いたもの (img の src に使える状態) を $formFields にセット
             $profile_image_url = str_replace('public', '', $full_path);
