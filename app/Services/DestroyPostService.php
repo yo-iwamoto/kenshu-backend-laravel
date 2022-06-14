@@ -13,10 +13,7 @@ class DestroyPostService implements DestroyPostServiceInterface
     public function execute($post_id, $current_user_id)
     {
         /** @var Post|null */
-        $post = Post::find($post_id);
-        if ($post === null) {
-            throw new ModelNotFoundException();
-        }
+        $post = Post::findOrFail($post_id);
 
         if ($post->user->id !== $current_user_id) {
             throw new UnauthorizedException();
