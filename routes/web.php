@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn () => view('root'));
+Route::get('/', [PostController::class, 'index']);
 
 Route::get('/signup', [UserController::class, 'create']);
 Route::resource('/user', UserController::class)->only([
@@ -30,5 +30,7 @@ Route::resource('/session', SessionController::class)->only([
 ]);
 
 Route::resource('/post', PostController::class)->only([
+    'show',
     'store',
+    'destroy',
 ]);

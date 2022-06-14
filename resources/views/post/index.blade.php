@@ -39,6 +39,27 @@
                     </form>
                 </div>
             </section>
+
+            <hr class="mb-6">
+
+            <section class="mb-20">
+                <h1 class="mb-8 text-lg">記事一覧</h1>
+                <div class="flex justify-around flex-wrap flex-grow gap-8">
+
+                    @if(count($posts) === 0)
+
+                    <div class="text-center">
+                        <p>まだ記事がないようです…🤔</p>
+                        <p>上のフォームから何か書いてみましょう</p>
+                    </div>
+
+                    @else
+
+                    @each('partials._post_card', $posts, 'post')
+
+                    @endif
+                </div>
+            </section>
         </div>
     </div>
 @endsection
