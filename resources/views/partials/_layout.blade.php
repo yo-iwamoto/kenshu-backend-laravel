@@ -6,7 +6,7 @@
 
     <title>KENSHU TIMES</title>
 
-    <link rel="stylesheet" href="/css/app.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             font-family: 'Nunito', sans-serif;
