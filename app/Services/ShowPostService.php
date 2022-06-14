@@ -10,6 +10,6 @@ class ShowPostService implements ShowPostServiceInterface
 {
     public function execute($id)
     {
-        return Post::with('user')->get()->find($id);
+        return Post::with(['user', 'images'])->get()->find($id);
     }
 }

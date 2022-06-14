@@ -1,5 +1,10 @@
 <a href="{{ route('post.show', ['post' => $post['id']]) }}" class="block w-64">
     <div class="col-span-1 rounded-lg p-4 shadow-lg hover:shadow-md">
+        <img
+            class="h-20 w-20 mx-auto"
+            src="{{ $post['thumbnail_post_image'] !== null ? $post['thumbnail_post_image']['image_url'] : '/img/no-img.jpeg' }}"
+            alt="{{ htmlspecialchars($post['title']) }}"
+        >
         <p class="font-bold text-lg mb-2">
             {{ htmlspecialchars($post['title']) }}
         </p>

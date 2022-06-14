@@ -14,6 +14,7 @@ class Post extends Model
      */
     protected $fillable = [
         'user_id',
+        'post_image_id',
         'title',
         'content',
     ];
@@ -24,5 +25,15 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(PostImage::class);
+    }
+
+    public function thumbnail_post_image()
+    {
+        return $this->belongsTo(PostImage::class, 'post_image_id');
     }
 }
