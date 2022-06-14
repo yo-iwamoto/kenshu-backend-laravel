@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Post;
 
 use App\Services\DestroyPostServiceInterface;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\UnauthorizedException;
 
 class DestroyPostService implements DestroyPostServiceInterface
