@@ -48,6 +48,8 @@ class PostController extends Controller
             user_id: $request->user()->id,
             title: $form_data['title'],
             content: $form_data['content'],
+            thumbnail_image_index: $form_data['thumbnail_image_index'],
+            images: $request->file('images'),
         );
 
         return redirect('/');
