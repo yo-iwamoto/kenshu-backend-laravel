@@ -6,6 +6,8 @@ use App\Services\DestroyPostService;
 use App\Services\DestroyPostServiceInterface;
 use App\Services\IndexPostService;
 use App\Services\IndexPostServiceInterface;
+use App\Services\IndexTagService;
+use App\Services\IndexTagServiceInterface;
 use App\Services\ShowPostService;
 use App\Services\ShowPostServiceInterface;
 use App\Services\StorePostService;
@@ -27,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(DestroyPostServiceInterface::class, DestroyPostService::class);
         $this->app->bind(IndexPostServiceInterface::class, IndexPostService::class);
+        $this->app->bind(IndexTagServiceInterface::class, IndexTagService::class);
         $this->app->bind(ShowPostServiceInterface::class, ShowPostService::class);
         $this->app->bind(StorePostServiceInterface::class, StorePostService::class);
         $this->app->bind(StoreUserServiceInterface::class, StoreUserService::class);

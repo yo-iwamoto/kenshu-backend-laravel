@@ -1,5 +1,5 @@
 <a href="{{ route('post.show', ['post' => $post['id']]) }}" class="block w-64">
-    <div class="col-span-1 rounded-lg p-4 shadow-lg hover:shadow-md">
+    <div class="rounded-lg p-4 shadow-lg hover:shadow-md">
         <img
             class="h-20 w-20 mx-auto"
             src="{{ $post['thumbnail_post_image'] !== null ? $post['thumbnail_post_image']['image_url'] : '/img/no-img.jpeg' }}"
@@ -8,6 +8,17 @@
         <p class="font-bold text-lg mb-2">
             {{ htmlspecialchars($post['title']) }}
         </p>
+
+        @if(count($post['tags']) !== 0)
+            <div class="flex items-center flex-wrap gap-2 mb-2">
+                @foreach($post['tags'] as $tag)
+                        <span class="py-0.5 px-1.5 text-xs bg-gray-300 hover:bg-gray-200 transition-colors shadow-md rounded-lg">
+                            {{ $tag['name'] }}
+                        </span>
+                @endforeach
+            </div>
+        @endif
+
         <div class="flex justify-between items-end">
             <p class="flex items-center">
                 <img class="h-5 w-5 rounded-full mr-1" src="{{ $post['user']['profile_image_url'] }}" alt="{{ htmlspecialchars($post['user']['name']) }}">

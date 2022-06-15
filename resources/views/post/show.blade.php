@@ -13,6 +13,16 @@
                 {{ $post['title'] }}
             </h1>
 
+            @if(count($post['tags']) !== 0)
+                <div class="flex items-center flex-wrap gap-2 mb-4 max-w-lg">
+                    @foreach($post['tags'] as $tag)
+                        <a href="#" class="py-0.5 px-1.5 text-sm bg-gray-300 hover:bg-gray-200 transition-colors shadow-md rounded-lg">
+                            {{ $tag['name'] }}
+                        </a>
+                    @endforeach
+                </div>
+            @endif
+
             <div class="flex justify-between items-end">
                 <div>
                     <p class="flex items-center mb-1">

@@ -12,7 +12,8 @@ interface StorePostServiceInterface
      * @param string $content
      * @param string|null $thumbnail_image_index
      * @param UploadedFile[]|null $images
+     * @param string[]|null $tag_ids
      * @return void
      */
-    public function execute($user_id, $title, $content, $thumbnail_image_index, $images);
+    public function execute($user_id, $title, $content, $thumbnail_image_index, $images, $tag_ids);
 }
