@@ -15,19 +15,12 @@ use Illuminate\Validation\UnauthorizedException;
 
 class PostController extends Controller
 {
-    public function __construct(
-        private DestroyPostServiceInterface $destroy_post_service,
-        private IndexPostServiceInterface $index_post_service,
-        private IndexTagServiceInterface $index_tag_service,
-        private ShowPostServiceInterface $show_post_service,
-        private StorePostServiceInterface $store_post_service,
+    public function index(
+        IndexPostServiceInterface $index_post_service,
+        IndexTagServiceInterface $index_tag_service,
     ) {
-    }
-
-    public function index()
-    {
-        $posts = $this->index_post_service->execute();
-        $tags = $this->index_tag_service->execute();
+        $posts = $index_post_service->execute();
+        $tags = $index_tag_service->execute();
 
         return view('post.index', [
             'posts' => $posts,
@@ -35,20 +28,24 @@ class PostController extends Controller
         ]);
     }
 
-    public function show(string $post_id)
-    {
-        $post = $this->show_post_service->execute($post_id);
+    public function show(
+        string $post_id,
+        ShowPostServiceInterface $show_post_service,
+    ) {
+        $post = $show_post_service->execute($post_id);
 
         return view('post.show', [
             'post' => $post,
         ]);
     }
 
-    public function store(StorePostRequest $request)
-    {
+    public function store(
+        StorePostRequest $request,
+        StorePostServiceInterface $store_post_service,
+    ) {
         $form_data = $request->validated();
 
-        $this->store_post_service->execute(
+        $store_post_service->execute(
             user_id: $request->user()->id,
             title: $form_data['title'],
             content: $form_data['content'],
@@ -60,10 +57,13 @@ class PostController extends Controller
         return redirect('/');
     }
 
-    public function destroy(DestroyPostRequest $request, string $post_id)
-    {
+    public function destroy(
+        DestroyPostRequest $request,
+        string $post_id,
+        DestroyPostServiceInterface $destroy_post_service,
+    ) {
         try {
-            $this->destroy_post_service->execute(
+            $destroy_post_service->execute(
                 post_id: $post_id,
                 current_user_id: $request->user()->id,
             );
