@@ -37,6 +37,26 @@
                             @enderror
                         </div>
 
+                        <div class="inline-block relative w-full">
+                            <label class="block" for="tags">
+                                <span class="font-bold">タグ</span>
+                                <small class="pl-2 font-bold">(任意, 複数選択可)</small>
+                            </label>
+                            <select
+                                id="tags"
+                                aria-labelledby="post tags"
+                                name="tags[]"
+                                class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded-lg shadow-lg leading-tight focus:outline-none focus:shadow-outline"
+                                multiple
+                            >
+                                @foreach($tags as $tag)
+                                    <option value="{{ $tag['id'] }}">{{ $tag['name'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @error('tags')
+                        @enderror
+
                         {{-- 画像フォーム ~~ --}}
 
                         <div class="flex flex-col">

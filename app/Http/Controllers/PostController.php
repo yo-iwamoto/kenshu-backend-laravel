@@ -6,6 +6,7 @@ use App\Http\Requests\DestroyPostRequest;
 use App\Http\Requests\StorePostRequest;
 use App\Services\DestroyPostServiceInterface;
 use App\Services\IndexPostServiceInterface;
+use App\Services\IndexTagServiceInterface;
 use App\Services\ShowPostServiceInterface;
 use App\Services\StorePostServiceInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -17,6 +18,7 @@ class PostController extends Controller
     public function __construct(
         private DestroyPostServiceInterface $destroy_post_service,
         private IndexPostServiceInterface $index_post_service,
+        private IndexTagServiceInterface $index_tag_service,
         private ShowPostServiceInterface $show_post_service,
         private StorePostServiceInterface $store_post_service,
     ) {
@@ -25,9 +27,11 @@ class PostController extends Controller
     public function index()
     {
         $posts = $this->index_post_service->execute();
+        $tags = $this->index_tag_service->execute();
 
         return view('post.index', [
             'posts' => $posts,
+            'tags' => $tags,
         ]);
     }
 
