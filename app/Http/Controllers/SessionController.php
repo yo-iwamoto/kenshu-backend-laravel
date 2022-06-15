@@ -9,21 +9,19 @@ use Illuminate\Support\Facades\Auth;
 
 class SessionController extends Controller
 {
-    public function __construct(
-        private StoreSessionServiceInterface $store_session_service,
-    ) {
-    }
-
     public function create()
     {
         return view('sessions.login');
     }
 
-    public function store(StoreSessionRequest $request)
+    public function store(
+        StoreSessionRequest $request,
+        StoreSessionServiceInterface $store_session_service,
+    )
     {
         $form_data = $request->validated();
 
-        $succeeded = $this->store_session_service->execute(
+        $succeeded = $store_session_service->execute(
             email: $form_data['email'],
             password: $form_data['password'],
         );

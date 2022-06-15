@@ -8,21 +8,18 @@ use Illuminate\Routing\Controller;
 
 class UserController extends Controller
 {
-    public function __construct(
-        private StoreUserServiceInterface $store_user_service,
-    ) {
-    }
-
     public function create()
     {
         return view('users.signup');
     }
 
-    public function store(StoreUserRequest $request)
-    {
+    public function store(
+        StoreUserRequest $request,
+        StoreUserServiceInterface $store_user_service,
+    ) {
         $form_data = $request->validated();
 
-        $this->store_user_service->execute(
+        $store_user_service->execute(
             name: $form_data['name'],
             email: $form_data['email'],
             password: $form_data['password'],
