@@ -16,6 +16,8 @@ use App\Services\StoreSessionService;
 use App\Services\StoreSessionServiceInterface;
 use App\Services\StoreUserService;
 use App\Services\StoreUserServiceInterface;
+use App\Services\UpdatePostService;
+use App\Services\UpdatePostServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -34,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(StorePostServiceInterface::class, StorePostService::class);
         $this->app->bind(StoreUserServiceInterface::class, StoreUserService::class);
         $this->app->bind(StoreSessionServiceInterface::class, StoreSessionService::class);
+        $this->app->bind(UpdatePostServiceInterface::class, UpdatePostService::class);
     }
 
     /**

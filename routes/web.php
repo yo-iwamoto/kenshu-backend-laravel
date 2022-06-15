@@ -32,5 +32,7 @@ Route::resource('/session', SessionController::class)->only([
 Route::resource('/post', PostController::class)->only([
     'show',
     'store',
+    'edit',
+    'update',
     'destroy',
 ]);
