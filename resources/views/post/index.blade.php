@@ -55,6 +55,7 @@
                             </select>
                         </div>
                         @error('tags')
+                            <p class="text-red-500">{{ $message }}</p>
                         @enderror
 
                         {{-- 画像フォーム ~~ --}}

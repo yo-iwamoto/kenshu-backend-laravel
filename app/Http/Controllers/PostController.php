@@ -54,6 +54,7 @@ class PostController extends Controller
             content: $form_data['content'],
             thumbnail_image_index: $form_data['thumbnail_image_index'],
             images: $request->file('images'),
+            tag_ids: isset($form_data['tags']) ? $form_data['tags'] : null,
         );
 
         return redirect('/');

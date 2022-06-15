@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Post;
 use App\Models\PostImage;
+use App\Models\PostToTag;
 use App\Services\StorePostServiceInterface;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,7 @@ use Throwable;
 
 class StorePostService implements StorePostServiceInterface
 {
-    public function execute($user_id, $title, $content, $thumbnail_image_index, $images)
+    public function execute($user_id, $title, $content, $thumbnail_image_index, $images, $tag_ids)
     {
         DB::beginTransaction();
 
@@ -33,6 +34,10 @@ class StorePostService implements StorePostServiceInterface
                 $post->update([
                     'post_image_id' => $thumbnail_post_image->id,
                 ]);
+            }
+
+            if ($tag_ids !== null) {
+                $this->bulkCreateTags($post, $tag_ids);
             }
 
             DB::commit();
@@ -77,5 +82,20 @@ class StorePostService implements StorePostServiceInterface
         ], $image_urls);
 
         PostImage::upsert($data, 'id');
+    }
+
+    /**
+     * Tag との関連を一括更新する
+     *
+     * @param Post $post
+     * @param string[] $tag_ids
+     * @return void
+     */
+    private function bulkCreateTags($post, $tag_ids)
+    {
+        PostToTag::upsert(array_map(fn (string $tag_id) => [
+            'post_id' => $post->id,
+            'tag_id' => $tag_id,
+        ], $to_create_tag_ids), ['post_id', 'tag_id']);
     }
 }
