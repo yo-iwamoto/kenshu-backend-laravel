@@ -96,6 +96,6 @@ class StorePostService implements StorePostServiceInterface
         PostToTag::upsert(array_map(fn (string $tag_id) => [
             'post_id' => $post->id,
             'tag_id' => $tag_id,
-        ], $to_create_tag_ids), ['post_id', 'tag_id']);
+        ], $tag_ids), ['post_id', 'tag_id']);
     }
 }
