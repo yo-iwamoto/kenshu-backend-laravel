@@ -62,7 +62,7 @@
                                 <a
                                     aria-label="編集する"
                                     class="before:absolute before:-right-0.5 before:-top-12 before:text-sm before:hidden before:rounded-lg before:shadow-lg before:content-['編集'] before:text-white before:whitespace-nowrap before:p-2 before:bg-black before:opacity-60 hover:before:inline-block"
-                                    href="#"
+                                    href="{{ route('post.edit', ['post' => $post['id']]) }}"
                                 >
                                     <img class="h-10 w-10" src="/img/edit.png">
                                 </a>
