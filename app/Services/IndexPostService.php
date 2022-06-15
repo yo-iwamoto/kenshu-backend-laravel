@@ -9,6 +9,6 @@ class IndexPostService implements IndexPostServiceInterface
 {
     public function execute()
     {
-        return Post::with(['user', 'thumbnail_post_image'])->get()->sortByDesc('created_at');
+        return Post::with(['user', 'thumbnail_post_image', 'tags'])->get()->sortByDesc('created_at');
     }
 }

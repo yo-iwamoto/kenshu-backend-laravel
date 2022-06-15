@@ -36,4 +36,9 @@ class Post extends Model
     {
         return $this->belongsTo(PostImage::class, 'post_image_id');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'post_to_tags');
+    }
 }
