@@ -14,6 +14,8 @@ interface StorePostServiceInterface
      * @param UploadedFile[]|null $images
      * @param string[]|null $tag_ids
      * @return void
+     *
+     * 渡す値は App\Http\Requests\StorePostRequest のバリデーションをパスしていること
      */
     public function execute($user_id, $title, $content, $thumbnail_image_index, $images, $tag_ids);
 }

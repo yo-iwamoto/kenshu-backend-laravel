@@ -13,6 +13,8 @@ interface StoreUserServiceInterface
      * @param UploadedFile|UploadedFile[]|array|null $file
      * @return void
      * @throws Exception
+     *
+     * 渡す値は App\Http\Requests\StoreUserRequest のバリデーションをパスしていること
      */
     public function execute($name, $email, $password, $file);
 }
