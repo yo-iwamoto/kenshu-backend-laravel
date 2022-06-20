@@ -17,6 +17,8 @@
 <body>
     @include('partials._header')
 
+    @include('partials._message')
+
     <main>
         @yield('content')
     </main>

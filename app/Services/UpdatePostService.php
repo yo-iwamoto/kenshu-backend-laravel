@@ -51,7 +51,7 @@ class UpdatePostService implements UpdatePostServiceInterface
         } catch (Throwable $e) {
             DB::rollBack();
 
-            throw $e;
+            throw new Exception(previous: $e);
         }
     }
 

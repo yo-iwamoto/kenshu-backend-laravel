@@ -46,7 +46,7 @@ class StorePostService implements StorePostServiceInterface
         } catch (Throwable $e) {
             DB::rollBack();
 
-            throw $e;
+            throw new Exception(previous: $e);
         }
     }
 

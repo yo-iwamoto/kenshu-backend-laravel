@@ -45,6 +45,7 @@
                             <form
                                 class="relative"
                                 action="{{ route('post.destroy', ['post' => $post['id']]) }}"
+                                method="POST"
                             >
                                 @csrf
                                 @method('DELETE')
