@@ -36,8 +36,8 @@ class StoreUserServiceTest extends TestCase
             file: $file,
         );
 
+        $expected_post_count = 1;
         $data = User::where('email', $email)->get()->toArray();
-
-        $this->assertEquals(count($data), 1);
+        $this->assertEquals($expected_post_count, count($data));
     }
 }
