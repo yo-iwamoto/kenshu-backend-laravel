@@ -15,6 +15,8 @@ interface UpdatePostServiceInterface
      * @param UploadedFile[]|null $images
      * @param string[]|null $tag_ids
      * @return void
+     *
+     * 渡す値は App\Http\Requests\UpdatePostRequest のバリデーションをパスしていること
      */
     public function execute($post_id, $user_id, $title, $content, $thumbnail_image_index, $images, $tag_ids);
 }
