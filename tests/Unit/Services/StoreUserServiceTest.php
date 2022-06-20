@@ -29,8 +29,10 @@ class StoreUserServiceTest extends TestCase
         $email = $this->faker->email();
         $file = new UploadedFile($this->testImagePath, basename($this->testImagePath));
 
+        $user_name = $this->faker->name();
+
         $this->service->execute(
-            name: $this->faker->name(),
+            name: $user_name,
             email: $email,
             password: $this->faker->password(),
             file: $file,
@@ -38,6 +40,8 @@ class StoreUserServiceTest extends TestCase
 
         $expected_post_count = 1;
         $data = User::where('email', $email)->get()->toArray();
+
         $this->assertEquals($expected_post_count, count($data));
+        $this->assertEquals($user_name, $data[0]['name']);
     }
 }
